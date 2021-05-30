@@ -72,7 +72,7 @@ August 2017 to October 2017
 <img align="left" width="92" src="../assets/img/truckerrs.png" style="padding-right:15px">
 
 #### **Truckerrs, Mumbai: Frontend Developer**
-May 2016 to October 2016
+May 2016 to June 2016
 
 -----
 - Designed the <strong>UI/UX</strong> for the website.
