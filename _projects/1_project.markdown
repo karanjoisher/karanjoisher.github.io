@@ -2,7 +2,7 @@
 layout: page
 title: Cross Platform Layer
 description: A platform layer API, developed from scratch, that provides an interface for window creation, sound, input/output and graphics to develop applications on Windows and Linux
-img: /assets/img/cross_platform_layer.png
+img: /assets/img/cross_platform_layer.jpg
 importance: 1
 category: work
 ---
