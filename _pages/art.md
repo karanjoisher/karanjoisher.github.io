@@ -2,7 +2,7 @@
 layout: page
 title: art
 permalink: /art/
-description: These are some of the projects that I have worked on.
+description: Some of my drawings.
 nav: true
 display_categories: [work, fun]
 horizontal: false
