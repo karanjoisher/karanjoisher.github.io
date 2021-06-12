@@ -21,7 +21,7 @@ My main interests include:
 - Graphics programming 
 - Game engines
 
-My goal is to develop performant, non over-engineered tools that leverage the immense potential offered my modern hardware, making overall computing experience much smoother and bloat free for users and developers.
+My goal is to develop performant, non over-engineered tools that leverage the immense potential offered by modern hardware, making overall computing experience much smoother and bloat free for users and developers.
 
 Other than programming, I also like drawing art and playing video games.
 
