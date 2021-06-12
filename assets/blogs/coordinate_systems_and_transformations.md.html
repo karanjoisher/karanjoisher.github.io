@@ -288,7 +288,7 @@ and
 
 \[T_{Origin}^Q = \begin{bmatrix} 1 & 0 & 0 & d \\ 0 & 1 & 0 & e \\ 0 & 0 & 1 & f \\ 0 & 0 & 0 & 1 \end{bmatrix}\]
 
-![Figure [robot]: Applying $T_Q^{Origin}$](data/1_after_T_Q_Org.PNG border="2")
+![Figure [robot]: Applying $T_Q^{Origin}$](data/1_after_T_Q_Org.png border="2")
 
 In the figure above we can see that the axis base is shifted to origin (the yellow line) and the Point P also has translated accordingly(from pink ball to yellow ball).
 
@@ -351,13 +351,13 @@ $V_{xz} = \begin{bmatrix}
 V_{xz} =  \begin{bmatrix} \sqrt{V_x^2 + V_y^2} \\ 0 \\ V_z \\ 0 \end{bmatrix} \\
 \hat{V_{xz}} =  \begin{bmatrix} \sqrt{\frac{V_x^2 + V_y^2}{V_x^2 + V_y^2 + V_z^2}} \\ 0 \\ \frac{V_z}{\sqrt{V_x^2 + V_y^2 + V_z^2}} \\ 0 \end{bmatrix}$
 
-![Figure [robot]: Applying $R_{\hat{V}}^{XZ}$ to $\hat{V}$ to get $\hat{V_{xz}}$](data/2_after_R_v_xz.PNG border="2")
+![Figure [robot]: Applying $R_{\hat{V}}^{XZ}$ to $\hat{V}$ to get $\hat{V_{xz}}$](data/2_after_R_v_xz.png border="2")
 
 ### Step 3. Apply rotation $R_\hat{V_{xz}}^{X}$ so that $\hat{V_{xz}}$ is rotated to X axis i.e. it aligns with the X axis.
 
-![Figure [robot]: Aligning $\hat{V_{xz}}$ with X axis](data/step_3.PNG border="2")
+![Figure [robot]: Aligning $\hat{V_{xz}}$ with X axis](data/step_3.png border="2")
 
-![Figure [robot]: State after step 2](data/step_3_0.PNG border="2")
+![Figure [robot]: State after step 2](data/step_3_0.png border="2")
 
 We'll know follow steps similar to step 2 to find $R_\hat{V_{xz}}^{X}$ from the above figure.
 
@@ -379,7 +379,7 @@ Applying $R_\hat{V_{xz}}^{X}$ to $\hat{V_{xz}}$ we get
 $\hat{V_x} = \begin{bmatrix} \sqrt{\frac{V_x^2 + V_y^2}{V_x^2 + V_y^2 + V_z^2}} & 0 & \frac{V_z}{\sqrt{V_x^2 + V_y^2 + V_z^2}} & 0\\ 0 & 1 & 0 & 0\\ -\frac{V_z}{\sqrt{V_x^2 + V_y^2 + V_z^2}} & 0 & \sqrt{\frac{V_x^2 + V_y^2}{V_x^2 + V_y^2 + V_z^2}}\\ 0 & 0 & 0 & 1 \end{bmatrix} * \begin{bmatrix} \sqrt{\frac{V_x^2 + V_y^2}{V_x^2 + V_y^2 + V_z^2}} \\ 0 \\ \frac{V_z}{\sqrt{V_x^2 + V_y^2 + V_z^2}} \\ 0 \end{bmatrix} \\
 \hat{V_x} = \begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \end{bmatrix} = X Axis$
 
-![Figure [robot]: $\hat{V_{xz}}$ rotated to X axis](data/3_after_R_vxz_x.PNG border="2")
+![Figure [robot]: $\hat{V_{xz}}$ rotated to X axis](data/3_after_R_vxz_x.png border="2")
 
 ### Step 4: Applying standard rotation about X Axis
 
