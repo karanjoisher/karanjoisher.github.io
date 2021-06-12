@@ -1,0 +1,431 @@
+**Coordinate Systems And Transformations**
+
+
+# Points and Coordinate Systems
+
+3D Coordinate Systems consists of 4 data components:
+- Origin
+- X axis basis vector
+- Y axis basis vector
+- Z axis basis vector
+
+In Unity sandox scene I wrote, the coordinate system is represented as follows:
+
+~~~~~~
+public class CoordinateSystem
+{
+    public Vector3 origin;
+    public Vector3 xAxis;
+    public Vector3 yAxis;
+    public Vector3 zAxis;
+};
+~~~~~~
+
+For example, the 3D Cartesian coordinate system that we are used to can be represented as
+
+- Origin : (0, 0, 0)
+- X Axis : (1, 0, 0)
+- Y Axis : (0, 1, 0)
+- Z Axis : (0, 0, 1)
+
+Let this coordinate system be called CS1.
+
+A point on its own can be thought of measurements along each of the axis defined by a coordinate system. A point must be 
+associated with some coordinate system to indicate a "point in space".
+
+For example, given a point P(a, b, c); it means that one needs to move "a" units along the X axis, move "b" units along the Y axis 
+and move "c" units along the Z axis of some coordinate system.
+
+![Walking along the basis axis to get point P](data/walking_along_the_basis_axis.png border="2")
+
+(It must be noted that the "metric" of each step is baked into the length of each basis vector defined by a coordinate system.
+For example, in CS1, the length of X Axis is sqrt(X.x^2 + X.y^2 + X.z^2) = sqrt(1^2 + 0^2 + 0^2) = 1. Thus each "step" along the 
+X axis is equivalent to 1 units worth of displacement along X axis. This unit can be interpreted as any unit by the developer (eg: 1 meter).
+If we wanted to change the X basis axis so that each step along X is equivalent to say 2 units worth of displacement, we simply scale the 
+X axis by 2 i.e.
+
+New X axis = 2 * X axis = 2 * (1, 0, 0) = (2, 0, 0).)
+
+Point P in coordinate system CS1 = CS1.origin + (a * X) + (b * Y) + (c * Z).
+Using this,we can represent the operation in matrix form as follows:
+
+![Matrix operation to get point P](data/matrix_form.png border="2")
+
+
+Thus whenever you see a "Point(P') = Matrix(M) * Point(P)" type of equation, one of the possible interpretations is to imagine
+the columns of the matrix M as axis of a coordinate system, values of point P as measurements along the axis of the 
+coordinate system and point P' as the point in space in that coordinate system.
+
+Consider we have two coordinate systems and a point P = (1, 2, 3).
+
+CS1:
+- Origin : (0, 0, 0)
+- X Axis : (1, 0, 0)
+- Y Axis : (0, 1, 0)
+- Z Axis : (0, 0, 1)
+
+CS2:
+- Origin : (3, 0, 0)
+- X Axis : (0.707, 0.707, 0)
+- Y Axis : (0.928, 0.371, 0)
+- Z Axis : (0, 0, 1)
+
+
+The code that determines the position of a point is as follows:
+~~~~~~
+Vector3 InterpretPointInGivenCoordinateSystem(Vector3 point, CoordinateSystem cs)
+{
+	return cs.origin + (point.x * cs.xAxis) + (point.y * cs.yAxis) + (point.z * cs.zAxis);
+}
+~~~~~~
+
+The point P in CS1 is represented as red cube, and in CS2 as pink cube.
+![Point P in CS1 represented as red cube, in CS2 as pink cube](data/cs1_cs2.png border="2")
+
+
+By setting the origin of CS2 same as CS1, we can clearly see that the same point ends up in different locations based on the 
+coordinate system it uses.
+![CS2's origin set same as CS1](data/cs1_cs2_same_origin.gif border="2")
+
+
+This gif shows how changing the basis vectors magnitude we get scaled representation of the scene, also changing the sign of any axis flips the 
+point about the axis.
+![CS1 scaling](data/cs1_scaling.gif border="2")
+
+Similarly for CS2:
+![CS2 scaling](data/cs2_scaling.gif border="2")
+
+
+Now lets consider another coordinate system CS3, that depends upon the point P(the red cube) in the CS1.
+
+CS3:
+- Origin : Position of Point P in CS1
+- X Axis : Right Normal Vector of Cube at Point P in CS1
+- Y Axis : Up Normal Vector of Cube at Point P in CS1
+- Z Axis : Forward Normal Vector of Cube at Point P in CS1
+
+The point P in CS3 is represented by a green cube. 
+
+As we change point P's values, its position in CS1 changes, which in turn changes its position in CS3.
+Also rotating the cube about any axis is equivalent to changing the axis of CS3, which in turn changes the position of point P in CS3.
+This is how nested objects in game engines like Unity behave, when their parents position/orientation changes, the basis of the childs coordinate
+system changes which in turn changes the childs position.
+
+![CS3 changing with respect to CS1](data/cs3.gif border="2")
+
+# Transformations
+
+## Scaling
+
+The "metric" of a coordinate system is baked into the lengths of each of its axis vectors.
+
+Consider 2 coordinate systems CS1 and CS2
+
+CS1:
+- Origin = (0, 0, 0)
+- X Axis = (1, 0, 0)
+- Y Axis = (0, 1, 0)
+- Z Axis = (0, 0, 1)
+
+CS2:
+- Origin = (0, 0, 0)
+- X Axis = (2, 0, 0)
+- Y Axis = (0, 1, 0)
+- Z Axis = (0, 0, 1)
+
+Consider a point P(1, 0, 0).
+In CS1, 
+
+Point P in CS1 = (0, 0, 0) + (1 * (1, 0, 0)) + (0 * (0, 1, 0)) + (0 * (0, 0, 1)) = (1, 0, 0)
+Point P in CS2 = (0, 0, 0) + (1 * (2, 0, 0)) + (0 * (0, 1, 0)) + (0 * (0, 0, 1)) = (2, 0, 0)
+
+We see that same point P displaces by 1 unit along X axis in CS1 and by 2 units along X axis in CS2.
+We can say that P's position is scaled by a factor of 2 in CS2 compared to CS1.
+This is because in CS1 the magnitude of the X axis vector = sqrt(1^2 + 0^2 + 0^2) = 1.
+In CS2 the magnitude of the X axis vector = sqrt(2^2 + 0^2 + 0^2) = 2.
+
+Thus in order to scale a point we need to scale only the axis of the coordinate system that it is in.
+
+$P' = \begin{bmatrix}
+S _x & 0 & 0 \\
+0 & S_y & 0 \\
+0 & 0 & S_z 
+\end{bmatrix} * P$
+
+## Translation
+
+Consider we have Point P(a, b, c) and we want to translate this point by a displacement D(e, f, g).
+
+If we use a 3*3 transformation matrix,
+
+\[ \begin{gather*} P' = \begin{bmatrix} h & i & j \\ k & l & m \\ n & o & p \end{bmatrix} * \begin{bmatrix} a \\ b \\ c \end{bmatrix} \\
+P' = a * \begin{bmatrix} h \\ k \\ n \end{bmatrix} + b * \begin{bmatrix} i \\ l \\ o \end{bmatrix} + c * \begin{bmatrix} j \\ m \\ p \end{bmatrix} \\
+P' = a * \vec{q} + b * \vec{r} + c * \vec{s} \end{gather*}\]
+
+Thus we see that we can only scale the column vectors inside the transformation matrix when we use a 3*3 matrix. For translation we need to be able to 
+add constants to P'. For this we need to introduce a fourth coordinate in our point P which is called the homogenous coordinate. 
+
+P = (a, b, c, 1) where 1 is the homogenous coordinate. To convert point P back to 3 values representation, divide all the coordinate values by homogenous coordinate.
+P = (a/1, b/1, c/1) = (a, b, c).
+
+For vectors, the homogenous coordinate is generally set to 0.
+When you try to get 3 coordinate representation of a vector from a 4 coordinate representation, you would have to divide by zero if you follow what I said for points above.
+However division by 0 is undefined, which in the case of vectors makes sense, as they have no "position" in space, they are just directions and not points in space.
+In practice the homogenous coordinate is ignored if the entity in question is a vector.
+
+Now lets create a 4*4 transformation matrix that will translate point P by D.
+
+$P' = \begin{bmatrix} 1 & 0 & 0 & e \\ 0 & 1 & 0 & f \\ 0 & 0 & 1 & g \\ 0 & 0 & 0 & 1 \end{bmatrix} * \begin{bmatrix} a \\ b \\ c \\ 1 \end{bmatrix} \\
+P' = a * \begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \end{bmatrix} + b * \begin{bmatrix} 0 \\ 1 \\ 0 \\ 0 \end{bmatrix} + c * \begin{bmatrix} 0 \\ 0 \\ 1 \\ 0 \end{bmatrix} + \begin{bmatrix} e \\ f \\ g \\ 1 \end{bmatrix} \\
+P' = \begin{bmatrix} a + e \\ b + f \\ c + g \\ 1 \end{bmatrix} \\
+P' = \begin{bmatrix} a' \\ b' \\ c' \\ 1 \end{bmatrix}$
+
+Thus we see that due to the homogenous coordinate, we can add the displacement (e, f, g) to point P. Also the last row of transformation matrix (0, 0, 0, 1) 
+ensures that the homogenous coordinate of P' stays 1 which makes it easy to chain the resultant point P' for other transformation matrices.
+
+Thus a translation matrix can be given by:
+$P' = \begin{bmatrix} 1 & 0 & 0 & T_x \\ 0 & 1 & 0 & T_y \\ 0 & 0 & 1 & T_z \\ 0 & 0 & 0 & 1 \end{bmatrix} * \begin{bmatrix} a \\ b \\ c \\ 1 \end{bmatrix}$
+
+## Rotation about standard axis
+
+In the cartesian coordinate system blog, we saw that to get a point in a given coordinate system, we need to have an equation of the form
+
+\[P' = \begin{bmatrix} | & | & | & | \\ CS X Axis & CS Y Axis & CS Z Axis & Origin \\ | & | & | & | \\ 0 & 0 & 0 & 1 \end{bmatrix} * P \]
+
+Inorder to rotate a point, we need to rotate the axis of the coordinate system and then interpret the point as mentioned above.
+
+\[P' = \begin{bmatrix} | & | & | & | \\ Rotated X Axis & Rotated Y Axis & Rotated Z Axis & Origin \\ | & | & | & | \\ 0 & 0 & 0 & 1 \end{bmatrix} * P \]
+
+### Rotation about Z axis
+
+Consider we want to rotate P about Z axis by angle of theta.
+![Figure [robot]: Coordinate System rotated by theta about Z axis](data/rotation_about_z_axis.png border="2")
+
+
+The figure shows the CS rotated about Z axis.
+After rotating by theta, we get new X, new Y axis. Z axis stays the same as we are rotating about it.
+
+Original CS:
+- Origin = (0, 0, 0)
+- X Axis = (1, 0, 0)
+- Y Axis = (0, 1, 0)
+- Z Axis = (0, 0, 1)
+
+All the axis in original CS are of unit length.
+
+The x coordinate of the New X Axis is its projection on the original X axis. We can see from the diagram that its cos(theta).
+Similarly its y coordinate = sin(theta)
+
+Thus New X Axis = (cos(theta), sin(theta), 0).
+
+For the new Y axis, we follow the same procedure, and using the similar triangles(marked by same signs in the figure), we get
+
+New Y Axis = (-sin(theta), cos(theta), 0).
+
+Rotated CS:
+- Origin = (0, 0, 0)
+- X Axis = (cos(theta), sin(theta), 0)
+- Y Axis = (-sin(theta), cos(theta), 0)
+- Z Axis = (0, 0, 1)
+
+Thus the equation to rotate P about Z axis by theta is
+
+\[P' = \begin{bmatrix} cos(\theta) & -sin(\theta) & 0 & 0 \\ sin(\theta) & cos(\theta) & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} * P \]
+
+### Rotation about X axis
+
+Rotation about X axis can be derived in the same way we derived rotation about Z axis.
+
+![Figure [robot]: Coordinate System rotated by theta about X axis](data/rotation_about_x_axis.png border="2")
+
+Equation to rotate P about X axis by theta is
+
+\[P' = \begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & cos(\theta) & -sin(\theta) & 0 \\ 0 & sin(\theta) & cos(\theta) & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} * P \]
+
+### Rotation about Y axis
+
+Rotation about Y axis can be derived in the same way we derived rotation about Z axis.
+
+![Figure [robot]: Coordinate System rotated by theta about Y axis](data/rotation_about_y_axis.png border="2")
+
+Equation to rotate P about Y axis by theta is
+
+\[P' = \begin{bmatrix} cos(\theta) & 0 & sin(\theta) & 0 \\ 0 & 1 & 0 & 0 \\ -sin(\theta) & 0 & cos(\theta) & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} * P \]
+
+## Rotation about arbitrary axis
+
+Now we'll understand how to perform rotation about arbitrary axis whose base is located at a certain location.
+
+In the rotation about standard axis section, each axis's base was at (0, 0, 0).
+
+Suppose we want to rotate a point P about axis $\hat{V}$ which originates from point Q.
+![Figure [robot]: Initial State](data/0_initial_state.png border="2")
+
+We would need to apply a series of transformations that would align the axis $\hat{V}$ with one of the standard axis(X, Y or Z axis).
+For this explanation we'll apply transformations that will align $\hat{V}$ with X axis. Then we can apply the standard rotation about X axis discussed 
+in the rotation about standard axis section. After applying the standard rotation we need to reverse the transformations that we applied in the first step 
+so that $\hat{V}$ is back to its original position.
+
+The steps to perform such a rotation are as follows:
+1. Translate $\hat{V}$ 's base so that it aligns with the origin of the coordinate system using $T_Q^{Origin}$ 
+2. Apply rotation $R_\hat{V}^{XZPlane}$ so that $\hat{V}$ is rotated to XZ plane. Lets call this rotated $\hat{V}$ in the XZ plane as $\hat{V_{xz}}$
+3. Apply rotation $R_\hat{V_{xz}}^{X}$ so that $\hat{V_{xz}}$ is rotated to X axis i.e. it aligns with the X axis.
+4. Apply standard rotation about X axis: $\begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & cos(\theta) & -sin(\theta) & 0 \\ 0 & sin(\theta) & cos(\theta) & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix}$
+5. Apply $R_{X}^\hat{V_{xz}}$ = ${(R_\hat{V_{xz}}^{X})}^T$ (Undoing effects of step 3).
+6. Apply $R_{XZPlane}^\hat{V}$ = ${(R_\hat{V}^{XZPlane})}^T$ (Undoing effects of step 2).
+7. Translate the $\hat{V}$ 's base back to its original position using $T_{Origin}^Q$ (Undoing effects of step 1).
+
+### Step 1: Translate $\hat{V}$ 's base so that it aligns with the origin of the coordinate system using $T_Q^{Origin}$ 
+
+![Figure [robot]: Aligning V with origin](data/step_1.png border="2")
+
+As seen in the diagram, $\hat{V}$'s base Q is located at (d, e, f). We need to apply a translation which would bring Q to (0, 0, 0).
+Using what we saw in translation section, we can formulate $T_Q^{Origin}$ as:
+
+\[T_Q^{Origin} = \begin{bmatrix} 1 & 0 & 0 & -d \\ 0 & 1 & 0 & -e \\ 0 & 0 & 1 & -f \\ 0 & 0 & 0 & 1 \end{bmatrix}\]
+
+and
+
+\[T_{Origin}^Q = \begin{bmatrix} 1 & 0 & 0 & d \\ 0 & 1 & 0 & e \\ 0 & 0 & 1 & f \\ 0 & 0 & 0 & 1 \end{bmatrix}\]
+
+![Figure [robot]: Applying $T_Q^{Origin}$](data/1_after_T_Q_Org.PNG border="2")
+
+In the figure above we can see that the axis base is shifted to origin (the yellow line) and the Point P also has translated accordingly(from pink ball to yellow ball).
+
+### Step 2: Apply rotation $R_\hat{V}^{XZPlane}$ so that $\hat{V}$ is rotated to XZ plane.
+
+![Figure [robot]: Rotating to XZ plane](data/step_2.png border="2")
+
+For calculating $R_\hat{V}^{XZPlane}$, consider a projection of $\hat{V}$ on the XY Plane.
+
+$V_{xy}$ = Remove z component from $\hat{V}$ = $(V_x, V_y, V_z)$
+
+Normalizing we get,
+$\hat{V_{xy}} = ( \frac{V_x}{\sqrt{V_x^2 + V_y^2}}, \frac{V_y}{\sqrt{V_x^2 + V_y^2}}, 0)$
+
+![Figure [robot]: Normalized Projection of $\hat{V}$ on XY plane](data/2_v_xy.png border="2")
+The figure above shows more clearly the projection of $\hat{V}$ on XY plane.
+
+![Figure [robot]: $\hat{V_{xy}}$, $\hat{V}$ lie in the sample plane A, rotating by $R_\hat{V}^{XZPlane}$ aligns them with XZ plane](data/step_2_0.png border="2")
+From the above figure we can see that if we can find out a rotation such that <b>$\hat{V_{xy}}$ aligns with X axis</b>, the same rotation will align $\hat{V}$ with 
+the XZ plane.
+
+![Figure [robot]: Rotation to align $\hat{V_{xy}}$ with X axis](data/step_2_1.png border="2")
+From rotation about standard axis section, we know that to rotate a point in a CS, we just need to rotate the CS 
+i.e we need to calculate the rotated axis of the CS.
+
+We know the rotated axis vectors from the figure above:
+- New X Axis = $\hat{V_{xy}} = ( \frac{V_x}{\sqrt{V_x^2 + V_y^2}}, \frac{V_y}{\sqrt{V_x^2 + V_y^2}}, 0)$ 
+- New Y Axis = $( -\frac{V_y}{\sqrt{V_x^2 + V_y^2}}, \frac{V_x}{\sqrt{V_x^2 + V_y^2}}, 0)$ 
+- New Z Axis = (0, 0, 1)
+
+If we wanted to rotate a point present in XZ plane to Plane A
+
+$R_{XZ}^{PlaneA} or R_{XZ}^{\hat{V}} = \begin{bmatrix} | & | & | & | \\ New X Axis & New Y Axis & New Z Axis & Origin \\ | & | & | & | \\ 0 & 0 & 0 & 1 \end{bmatrix}
+= \begin{bmatrix}
+\frac{V_x}{\sqrt{V_x^2 + V_y^2}} & -\frac{V_y}{\sqrt{V_x^2 + V_y^2}} & 0 & 0 \\
+\frac{V_y}{\sqrt{V_x^2 + V_y^2}} & \frac{V_x}{\sqrt{V_x^2 + V_y^2}} & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 
+\end{bmatrix}$
+
+Thus to rotate a point from plane A to XZ plane, i.e. to rotate ${\hat{V}}$ to XZPlane
+
+$R_{PlaneA}^{XZ} or R_{\hat{V}}^{XZ} = (R_{XZ}^{\hat{V}})^T
+= \begin{bmatrix}
+\frac{V_x}{\sqrt{V_x^2 + V_y^2}} & \frac{V_y}{\sqrt{V_x^2 + V_y^2}} & 0 & 0 \\
+-\frac{V_y}{\sqrt{V_x^2 + V_y^2}} & \frac{V_x}{\sqrt{V_x^2 + V_y^2}} & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 
+\end{bmatrix}$
+
+Applying $R_{\hat{V}}^{XZ}$ to $\hat{V}$
+
+$V_{xz} = \begin{bmatrix}
+\frac{V_x}{\sqrt{V_x^2 + V_y^2}} & \frac{V_y}{\sqrt{V_x^2 + V_y^2}} & 0 & 0 \\
+-\frac{V_y}{\sqrt{V_x^2 + V_y^2}} & \frac{V_x}{\sqrt{V_x^2 + V_y^2}} & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 
+\end{bmatrix} * \begin{bmatrix} V_x \\ V_y \\ V_z\\ 0 \end{bmatrix} \\
+
+V_{xz} =  \begin{bmatrix} \sqrt{V_x^2 + V_y^2} \\ 0 \\ V_z \\ 0 \end{bmatrix} \\
+\hat{V_{xz}} =  \begin{bmatrix} \sqrt{\frac{V_x^2 + V_y^2}{V_x^2 + V_y^2 + V_z^2}} \\ 0 \\ \frac{V_z}{\sqrt{V_x^2 + V_y^2 + V_z^2}} \\ 0 \end{bmatrix}$
+
+![Figure [robot]: Applying $R_{\hat{V}}^{XZ}$ to $\hat{V}$ to get $\hat{V_{xz}}$](data/2_after_R_v_xz.PNG border="2")
+
+### Step 3. Apply rotation $R_\hat{V_{xz}}^{X}$ so that $\hat{V_{xz}}$ is rotated to X axis i.e. it aligns with the X axis.
+
+![Figure [robot]: Aligning $\hat{V_{xz}}$ with X axis](data/step_3.PNG border="2")
+
+![Figure [robot]: State after step 2](data/step_3_0.PNG border="2")
+
+We'll know follow steps similar to step 2 to find $R_\hat{V_{xz}}^{X}$ from the above figure.
+
+We know the rotated axis vectors from the figure above:
+- New X Axis = $\hat{V_{xz}} = (\sqrt{\frac{V_x^2 + V_y^2}{V_x^2 + V_y^2 + V_z^2}}, 0, \frac{V_z}{\sqrt{V_x^2 + V_y^2 + V_z^2}})$ 
+- New Y Axis = (0, 1, 0)
+- New Z Axis = $(-\frac{V_z}{\sqrt{V_x^2 + V_y^2 + V_z^2}}, 0, \sqrt{\frac{V_x^2 + V_y^2}{V_x^2 + V_y^2 + V_z^2}})$ 
+
+If we wanted to rotate a point along X axis to $\hat{V_{xz}}$
+
+$R_{X}^\hat{V_{xz}} = \begin{bmatrix} \sqrt{\frac{V_x^2 + V_y^2}{V_x^2 + V_y^2 + V_z^2}} & 0 & -\frac{V_z}{\sqrt{V_x^2 + V_y^2 + V_z^2}} & 0\\ 0 & 1 & 0 & 0\\ \frac{V_z}{\sqrt{V_x^2 + V_y^2 + V_z^2}} & 0 & \sqrt{\frac{V_x^2 + V_y^2}{V_x^2 + V_y^2 + V_z^2}}\\ 0 & 0 & 0 & 1 \end{bmatrix}$
+
+Thus to rotate a point along $\hat{V_{xz}}$ to X axis, i.e. to rotate $\hat{V_{xz}}$ to X Axis
+
+$R_\hat{V_{xz}}^{X} = (R_{X}^\hat{V_{xz}})^T = \begin{bmatrix} \sqrt{\frac{V_x^2 + V_y^2}{V_x^2 + V_y^2 + V_z^2}} & 0 & \frac{V_z}{\sqrt{V_x^2 + V_y^2 + V_z^2}} & 0\\ 0 & 1 & 0 & 0\\ -\frac{V_z}{\sqrt{V_x^2 + V_y^2 + V_z^2}} & 0 & \sqrt{\frac{V_x^2 + V_y^2}{V_x^2 + V_y^2 + V_z^2}}\\ 0 & 0 & 0 & 1 \end{bmatrix}$
+
+Applying $R_\hat{V_{xz}}^{X}$ to $\hat{V_{xz}}$ we get
+
+$\hat{V_x} = \begin{bmatrix} \sqrt{\frac{V_x^2 + V_y^2}{V_x^2 + V_y^2 + V_z^2}} & 0 & \frac{V_z}{\sqrt{V_x^2 + V_y^2 + V_z^2}} & 0\\ 0 & 1 & 0 & 0\\ -\frac{V_z}{\sqrt{V_x^2 + V_y^2 + V_z^2}} & 0 & \sqrt{\frac{V_x^2 + V_y^2}{V_x^2 + V_y^2 + V_z^2}}\\ 0 & 0 & 0 & 1 \end{bmatrix} * \begin{bmatrix} \sqrt{\frac{V_x^2 + V_y^2}{V_x^2 + V_y^2 + V_z^2}} \\ 0 \\ \frac{V_z}{\sqrt{V_x^2 + V_y^2 + V_z^2}} \\ 0 \end{bmatrix} \\
+\hat{V_x} = \begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \end{bmatrix} = X Axis$
+
+![Figure [robot]: $\hat{V_{xz}}$ rotated to X axis](data/3_after_R_vxz_x.PNG border="2")
+
+### Step 4: Applying standard rotation about X Axis
+
+$R = \begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & cos(\theta) & -sin(\theta) & 0 \\ 0 & sin(\theta) & cos(\theta) & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix}$
+
+![Figure [robot]:(gif) Standard rotation about X Axis](data/rotation_about_standard_axis.gif border="2")
+
+In the above figure we can see how the point(Violet ball) rotates about X axis as we apply R.
+
+### Step 5: Apply $R_{X}^\hat{V_{xz}}$
+
+![Figure [robot]:(gif) Rotating back to $\hat{V_{xz}}$ plane](data/rotate_back_to_vxz_plane.gif border="2")
+
+In the above figure we can see how the point(Orange ball) rotates back to $\hat{V_{xz}}$ plane.
+
+### Step 6: Apply $R_{XZPlane}^\hat{V}$
+
+![Figure [robot]:(gif) Rotating back to $\hat{V}$ plane](data/rotate_back_to_v_plane.gif border="2")
+
+In the above figure we can see how the point(Green ball) rotates back to $\hat{V}$ plane.
+
+### Step 7: Translate $\hat{V}$'s base back to its original position using $T_{Origin}^Q$
+
+![Figure [robot]:(gif) Translate $\hat{V}$'s base back to its original position](data/translated_back_to_original_base.gif border="2")
+
+In the above figure we can see how the point(Maroon ball) is translated back to its original position near the black line(Black line is the original $\hat{V}$. See the initial state figure above)
+
+
+Thus after applying all the steps we get rotation about arbitrary axis:
+
+![Figure [robot]:(gif) Rotation about arbitrary axis](data/final_rotation.gif border="2")
+
+$P_{rotated} = T_{Origin}^Q.R_{XZPlane}^\hat{V}.R_{X}^\hat{V_{xz}}.R.R_\hat{V_{xz}}^{X}.R_\hat{V}^{XZPlane}.T_Q^{Origin}.P$
+
+$R_{VAxis} = R_{XZPlane}^\hat{V}.R_{X}^\hat{V_{xz}}.R.R_\hat{V_{xz}}^{X}.R_\hat{V}^{XZPlane} \\
+= \begin{bmatrix} V_x^2 + (V_y^2 + V_z^2)cos\theta & V_x.V_y(1 - cos\theta) - V_z.sin\theta & V_x.V_z(1 - cos\theta) + V_y.sin\theta & 0 \\ 
+				  V_x.V_y(1 - cos\theta) + V_z.sin\theta & V_y^2 + (V_x^2 + V_z^2)cos\theta & V_y.V_z(1 - cos\theta) - V_x.sin\theta & 0 \\ 
+				  V_x.V_z(1 - cos\theta) + V_y.sin\theta & V_y.V_z(1 - cos\theta) + V_x.sin\theta & V_z^2 + (V_x^2 + V_y^2)cos\theta) & 0 \\
+				  0 & 0 & 0 & 1 \end{bmatrix}$
+
+Thus we get,
+
+$P_{rotated} = T_{Origin}^Q.R_{VAxis}.T_Q^{Origin}.P$
+
+NOTE: V Axis must be a unit vector.
+
+
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js"></script><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js?"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

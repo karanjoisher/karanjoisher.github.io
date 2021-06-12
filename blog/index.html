@@ -21,13 +21,17 @@ pagination:
 
 
   <ul class="post-list">
-    {% for post in paginator.posts %}
       <li>
-        <h3><a class="post-title" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
-        <p class="post-meta">{{ post.date | date: '%B %-d, %Y' }}</p>
-        <p>{{ post.description }}</p>
+        <h3><a class="post-title" href="../assets/blogs/coordinate_systems_and_transformations.md.html">Coordinate Systems And Transformations</a></h3>
+        <p>This blog explains coordinate systems and various transformations like scaling, translation, rotation and their derivation using matricies</p>
       </li>
-    {% endfor %}
+  </ul>
+  
+  <ul class="post-list">
+      <li>
+        <h3><a class="post-title" href="../assets/blogs/perspective_camera.pdf">Perspective Camera and its OpenGL gotchas</a></h3>
+        <p>This post explains and derives perspective projection transform for implementing cameras and its implementation specific gotchas in OpenGL</p>
+      </li>
   </ul>
 
   {% include pagination.html %}
