@@ -1,6 +1,6 @@
 ---
 layout: page
-title: OpenGL Experiments
+title: 3D Model Viewer
 description: Implemented 3D model viewer with hierarchical meshes, phong lighting using materials, perspective camera
 img: /assets/img/opengl_experiments.jpg
 importance: 2
