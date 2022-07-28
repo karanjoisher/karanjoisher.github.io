@@ -16,12 +16,11 @@ social: false  # includes social icons at the bottom of the page
 I received my Bachelors in Technology (B.Tech) in Computer Engineering from [K.J. Somaiya College Of Engineering](https://kjsce.somaiya.edu){:target="\_blank"} and currently working as a Software Developer at [Barclays](https://home.barclays){:target="\_blank"}. 
 
 My main interests include:
+- Software development (Backend APIs, applications, microservices, etc.)
 - Tools development (Compilers, debuggers, etc.)
 - Systems programming (Operating systems, kernels, etc.)
-- Graphics programming 
-- Game engines
 
-My goal is to develop performant, non over-engineered tools that leverage the immense potential offered by modern hardware, making overall computing experience much smoother and bloat free for users and developers.
+My goal is to develop performant, easy-to-use tools that leverage the immense potential offered by modern hardware, making overall computing experience much smoother and bloat free for users and developers.
 
 Other than programming, I also like drawing art and playing video games.
 
@@ -39,7 +38,7 @@ Other than programming, I also like drawing art and playing video games.
 I did my Bachelor of Technology in Computer Engineering from K.J Somaiya College of Engineering. 
 <br>
 <strong>CGPA:</strong> 8.56/10 <br> 
-<strong>Relevant coursework:</strong> Computer Architecture, Operating Systems, Systems Programming and Compiler Construction, Fundamentals of Programming, Data Structures, Algorithms<br>
+<strong>Coursework:</strong> Computer Architecture, Operating Systems, Systems Programming and Compiler Construction, Fundamentals of Programming, Data Structures, Algorithms<br>
 
 <br>
 # Experience
@@ -48,9 +47,10 @@ I did my Bachelor of Technology in Computer Engineering from K.J Somaiya College
 <img align="left" width="92" src="../assets/img/barclays.png" style="padding-right:15px">
 
 #### **Barclays, Pune: Software Developer**
-July 2019 - Present
+July 2019 - July 2022
 
 ----- 
+- Designed and developed an ecosystem of APIs for setting up repayment plans for delinquent accounts.
 - Developed tools for bank employees which help them analyze customer experience with certain bank processes, generate reports and statistics related to quality assurance and <strong>digitize</strong> this entire process which previously required manual efforts.
 - Replaced legacy applications with modern tech stack running on <strong>AWS</strong> to improve performance, reduce license costs and tech debt.
 - Developed tooling to automate provisioning of AWS resources like <strong>EC2 machines, RDS (Relational Databases), Kafka clusters</strong>, etc. to provide a highly available platform.
