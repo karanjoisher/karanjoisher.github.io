@@ -34,7 +34,7 @@ Other than programming, I also like drawing art and playing video games.
 
 <img align="left" width="100" src="../assets/img/neu.png" style="padding-right:15px">
 #### **Northeastern University**
-<strong>Master of Science in Computer Science</strong><br>
+<strong>M.S. in Computer Science</strong><br>
 <i>Boston, MA</i>&nbsp;&nbsp;|&nbsp;&nbsp;<i>Sept 2022 - May 2024 (Expected)</i> 
 
 -----
@@ -42,7 +42,7 @@ Other than programming, I also like drawing art and playing video games.
 
 -----
 
-<img align="left" width="100" src="../assets/img/somaiya.jpg" style="padding-right:15px">
+<img align="left" width="105" src="../assets/img/somaiya.jpg" style="padding-right:15px">
 #### **K.J. Somaiya College of Engineering**
 <strong>B.Tech in Computer Engineering</strong><br>
 <i>Mumbai, India</i>&nbsp;&nbsp;|&nbsp;&nbsp;<i>Aug 2015 - May 2019</i>
