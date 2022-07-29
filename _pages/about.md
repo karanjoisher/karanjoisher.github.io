@@ -19,8 +19,8 @@ I received my Bachelors in Technology (B.Tech) in Computer Engineering from [K.J
 
 My main interests include:
 - Software development (Backend APIs, applications, microservices, etc.)
-- Tools development (Compilers, debuggers, etc.)
 - Systems programming (Operating systems, kernels, etc.)
+- Tools development (Compilers, debuggers, etc.)
 
 My goal is to develop performant, easy-to-use tools that leverage the immense potential offered by modern hardware, making overall computing experience much smoother and bloat free for users and developers.
 
@@ -33,20 +33,21 @@ Other than programming, I also like drawing art and playing video games.
 -----
 
 <img align="left" width="100" src="../assets/img/neu.png" style="padding-right:15px">
-#### **Master of Science in Computer Science, Northeastern University**
-September 2022 - May 2024 (Expected) 
+#### **Northeastern University**
+<strong>Master of Science in Computer Science</strong><br>
+<i>Boston, MA</i>&nbsp;&nbsp;|&nbsp;&nbsp;<i>Sept 2022 - May 2024 (Expected)</i> 
 
 -----
 <strong>Coursework:</strong> Program Design Paradigms, Program Design Paradigms, Database Management Systems<br>
+
 -----
 
 <img align="left" width="100" src="../assets/img/somaiya.jpg" style="padding-right:15px">
-#### **B.Tech in Computer Engineering, K.J Somaiya College of Engineering**
-2015 - 2019 
+#### **K.J. Somaiya College of Engineering**
+<strong>B.Tech in Computer Engineering</strong><br>
+<i>Mumbai, India</i>&nbsp;&nbsp;|&nbsp;&nbsp;<i>Aug 2015 - May 2019</i>
 
 -----
-I did my Bachelor of Technology in Computer Engineering from K.J Somaiya College of Engineering. 
-<br>
 <strong>CGPA:</strong> 8.56/10 <br> 
 <strong>Coursework:</strong> Computer Architecture, Operating Systems, Systems Programming and Compiler Construction, Fundamentals of Programming, Data Structures, Algorithms<br>
 
@@ -54,24 +55,36 @@ I did my Bachelor of Technology in Computer Engineering from K.J Somaiya College
 # Experience
 -----
 
-<img align="left" width="92" src="../assets/img/barclays.png" style="padding-right:15px">
+<img align="left" width="100" src="../assets/img/barclays.png" style="padding-right:15px">
 
-#### **Barclays, Pune: Software Developer**
-July 2019 - July 2022
+#### **Barclays**
+<strong>Application Developer</strong><br>
+<i>Pune, India</i>&nbsp;&nbsp;|&nbsp;&nbsp;<i>Jul 2019 - Jul 2022</i>
 
 ----- 
-- Designed and developed an ecosystem of APIs for setting up repayment plans for delinquent accounts.
-- Developed tools for bank employees which help them analyze customer experience with certain bank processes, generate reports and statistics related to quality assurance and <strong>digitize</strong> this entire process which previously required manual efforts.
-- Replaced legacy applications with modern tech stack running on <strong>AWS</strong> to improve performance, reduce license costs and tech debt.
-- Developed tooling to automate provisioning of AWS resources like <strong>EC2 machines, RDS (Relational Databases), Kafka clusters</strong>, etc. to provide a highly available platform.
-- Developed a dashboard for the control team to monitor the health of and reconcile errors on <strong>Kafka cluster and applications</strong>.
+● <strong>Barclays Mobile Banking APIs</strong><br>
+○ Designed and developed an ecosystem of APIs for setting up repayment plans for delinquent accounts.<br>
+○ Gained 5x improvement in API response times by making downstream API calls asynchronous and parallel.<br>
+○ Implemented a performance logging and monitoring library to track performance of these APIs.<br>
+● <strong>Customer Outcome Testing Application</strong><br>
+○ Gathered requirements from bank agents to understand how they manually reviewed collection cases.<br>
+○ Developed a backend API and database components to digitize the manual case review process.<br>
+○ Closely worked with bank agents to build UI and iterate over the application flow.<br>
+○ <strong><i>Key Achievements</i></strong>: Reduced manual effort for case reviews by 232 hours/week (5.8 FTEs).<br>
+● <strong>AWS Microservices and Cloud Infrastructure Automation</strong><br>
+○ Developed microservices to create collection cases for delinquent accounts received via Apache Kafka events.<br>
+○ Created CloudFormation templates to deploy auto-scaling ECS clusters, MSK clusters, RDS, and EC2 machines on the AWS cloud platform.<br>
+○ Implemented AWS Lambdas for rotating credentials and replicating EBS volumes to backup data.<br>
+○ Developed features for APIs to automatically fetch the latest credentials from AWS Secret Manager.<br>
+○ <strong><i>Key Achievements</i></strong>: Single-click infra provisioning; Reduced server costs by demand-based cluster scaling.<br>
 
 -----
 
-<img align="left" width="91" src="../assets/img/accelo.jpg" style="padding-right:15px">
+<img align="left" width="100" src="../assets/img/accelo.jpg" style="padding-right:15px">
 
-#### **Accelo Innovations, Mumbai: Computer Vision Developer**
-August 2017 to October 2017
+#### **Accelo Innovations**
+<strong>Computer Vision Developer</strong><br>
+<i>Mumbai, India</i>&nbsp;&nbsp;|&nbsp;&nbsp;<i>Aug 2017 - Oct 2017</i>
 
 -----
 - Developed <strong>depth mapping module (using stereo-vision)</strong> in <strong>Python</strong> and <strong>C</strong> using a two camera setup.
@@ -79,10 +92,11 @@ August 2017 to October 2017
 
 -----
 
-<img align="left" width="92" src="../assets/img/truckerrs.png" style="padding-right:15px">
+<img align="left" width="100" src="../assets/img/truckerrs.png" style="padding-right:15px">
 
-#### **Truckerrs, Mumbai: Frontend Developer**
-May 2016 to June 2016
+#### **Truckerrs**
+<strong>Frontend Developer</strong><br>
+<i>Mumbai, India</i>&nbsp;&nbsp;|&nbsp;&nbsp;<i>May 2016 - Jun 2016</i>
 
 -----
 - Designed the <strong>UI/UX</strong> for the website.
@@ -91,10 +105,11 @@ May 2016 to June 2016
 
 -----
 
-<img align="left" width="92" src="../assets/img/tapthetech.png" style="padding-right:15px">
+<img align="left" width="100" src="../assets/img/tapthetech.png" style="padding-right:15px">
 
-#### **TapTheTech, Mumbai: Flash Animator**
-March 2013 to January 2014
+#### **TapTheTech**
+<strong>Flash Animator</strong><br>
+<i>Mumbai, India</i>&nbsp;&nbsp;|&nbsp;&nbsp;<i>Mar 2013 - Jan 2014</i>
 
 -----
 - TapTheTech was a group of students who believed <strong>MOOCs are the future of education</strong>. It went on to become one of the <strong>official learning hubs on Coursera</strong>
