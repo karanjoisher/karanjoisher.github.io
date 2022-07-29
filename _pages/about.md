@@ -13,7 +13,9 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: false  # includes social icons at the bottom of the page
 ---
 
-I received my Bachelors in Technology (B.Tech) in Computer Engineering from [K.J. Somaiya College Of Engineering](https://kjsce.somaiya.edu){:target="\_blank"} and currently working as a Software Developer at [Barclays](https://home.barclays){:target="\_blank"}. 
+I am currently pursuing Master of Science in Computer Science degree at [Northeastern University, Khoury College of Computer Sciences](https://www.khoury.northeastern.edu){:target="\_blank"}, Boston MA.
+
+I received my Bachelors in Technology (B.Tech) in Computer Engineering from [K.J. Somaiya College Of Engineering](https://kjsce.somaiya.edu){:target="\_blank"} and worked as an Application Developer at [Barclays](https://home.barclays){:target="\_blank"} for three years. 
 
 My main interests include:
 - Software development (Backend APIs, applications, microservices, etc.)
@@ -28,6 +30,14 @@ Other than programming, I also like drawing art and playing video games.
 
 # Education
 
+-----
+
+<img align="left" width="100" src="../assets/img/neu.png" style="padding-right:15px">
+#### **Master of Science in Computer Science, Northeastern University**
+September 2022 - May 2024 (Expected) 
+
+-----
+<strong>Coursework:</strong> Program Design Paradigms, Program Design Paradigms, Database Management Systems<br>
 -----
 
 <img align="left" width="100" src="../assets/img/somaiya.jpg" style="padding-right:15px">
