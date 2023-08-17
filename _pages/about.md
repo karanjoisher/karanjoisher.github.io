@@ -15,7 +15,7 @@ social: false  # includes social icons at the bottom of the page
 
 I am currently pursuing Master of Science in Computer Science degree at [Northeastern University, Khoury College of Computer Sciences](https://www.khoury.northeastern.edu){:target="\_blank"}, Boston MA.
 
-I received my Bachelors in Technology (B.Tech) in Computer Engineering from [K.J. Somaiya College Of Engineering](https://kjsce.somaiya.edu){:target="\_blank"} and worked as an Application Developer at [Barclays](https://home.barclays){:target="\_blank"} for three years. 
+I received my Bachelors in Technology (B.Tech) in Computer Engineering from [K.J. Somaiya College Of Engineering](https://kjsce.somaiya.edu){:target="\_blank"} and worked as a Software Developer at [Barclays](https://home.barclays){:target="\_blank"} for three years. 
 
 My main interests include:
 - Software development (Backend APIs, applications, microservices, etc.)
@@ -38,7 +38,8 @@ Other than programming, I also like drawing art and playing video games.
 <i>Boston, MA</i>&nbsp;&nbsp;|&nbsp;&nbsp;<i>Sept 2022 - May 2024 (Expected)</i> 
 
 -----
-<strong>Coursework:</strong> Program Design Paradigms, Program Design Paradigms, Database Management Systems<br>
+<strong>GPA:</strong> 4/4 <br> 
+<strong>Coursework:</strong> Operating Systems <b><i>(Received Rockstar Programmer Award)</i></b>, Program Design Paradigms, Database Management Systems<br>
 
 -----
 
@@ -54,11 +55,39 @@ Other than programming, I also like drawing art and playing video games.
 <br>
 # Experience
 -----
+<img align="left" width="100" src="../assets/img/hpe.png" style="padding-right:15px">
+
+#### **Hewlett Packard Enterprise**
+<strong>Systems Software Engineer Intern</strong><br>
+<i>Andover, Massachusetts</i>&nbsp;&nbsp;|&nbsp;&nbsp;<i>May 2023 - Dec 2023</i>
+
+----- 
+- Built NVGrid, a foundational library suite for developing advanced cloud storage apps leveraging NVMe, RDMA
+- Implemented RDMA channel API using IBVerbs to provide high-speed data transfers with minimum latency
+- Developed TCP channel for non-RDMA NICs, and Shared Memory channel for services on the same node
+- Engineered Connection Manager library for establishing channel connections between nodes; used gRPC service framework and Redis for service look-up; and Boost state machine for connection orchestration
+- Architected Telemetry library to monitor the health and performance metrics of NVGrid components and integrated it with Grafana for visualization
+- Tech used: C/C++, IBVerbs, Boost, gRPC, Redis, Kubernetes, Docker, Grafana, Bazel, GoogleTest, Jenkins
+
+-----
+
+<img align="left" width="100" src="../assets/img/neu.png" style="padding-right:15px">
+
+#### **Northeastern University**
+<strong>Research Assistant</strong><br>
+<i>Boston, Massachusetts</i>&nbsp;&nbsp;|&nbsp;&nbsp;<i>Jan 2023 - May 2023</i>
+
+----- 
+- Provided SME support for Discovery Cluster on topics ranging from Linux, Slurm, Docker, MPI, Cuda, and Distributed ML Training
+- Orchestrated concourse pipelines to build and deploy containers of docker and Singularity
+- Collaborated with researchers to construct and launch large ML models on multi-GPU clusters, leveraging PyTorch and TensorFlow
+
+-----
 
 <img align="left" width="100" src="../assets/img/barclays.png" style="padding-right:15px">
 
 #### **Barclays**
-<strong>Application Developer</strong><br>
+<strong>Software Developer</strong><br>
 <i>Pune, India</i>&nbsp;&nbsp;|&nbsp;&nbsp;<i>Jul 2019 - Jul 2022</i>
 
 ----- 
