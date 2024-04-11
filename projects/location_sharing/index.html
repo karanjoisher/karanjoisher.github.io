@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>Karan Joisher</title>
+<title>Karan Joisher | Location Sharing</title>
 <meta name="description" content="This is my personal website.
 ">
 
@@ -31,7 +31,7 @@
 
 <link rel="stylesheet" href="/assets/css/main.css">
 
-<link rel="canonical" href="/blog/">
+<link rel="canonical" href="/projects/location_sharing/">
 
 <!-- JQuery -->
 <!-- jQuery -->
@@ -96,7 +96,7 @@
           </li>
           
           <!-- Blog -->
-          <li class="nav-item active">
+          <li class="nav-item ">
             <a class="nav-link" href="/blog/">
               blog
               
@@ -158,28 +158,60 @@
     <div class="container mt-5">
       <div class="post">
 
-  <div class="header-bar">
-    <h1>Blogs</h1>
-    <h2>Some of my blogs and posts</h2>
-  </div>
+  <header class="post-header">
+    <h1 class="post-title">Location Sharing</h1>
+    <p class="post-description">Android app to share location using phone number</p>
+  </header>
 
+  <article>
+    <h2 id="screenshots">Screenshots</h2>
+<div class="row">
+    <div class="col-sm mt-2 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/first_gps.jpg" alt="" title="Homescreen" />
+    </div>
+    <div class="col-sm mt-2 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/second_gps.jpg" alt="" title="Location Sharing" />
+    </div>
+</div>
+<div class="caption">
+    From left to right: Homescreen, shared location.
+</div>
 
-  <ul class="post-list">
-      <li>
-        <h3><a class="post-title" href="../assets/blogs/coordinate_systems_and_transformations.md.html">Coordinate Systems And Transformations</a></h3>
-        <p>This blog explains coordinate systems and various transformations like scaling, translation, rotation and their derivation using matricies</p>
-      </li>
-  </ul>
-  
-  <ul class="post-list">
-      <li>
-        <h3><a class="post-title" href="../assets/blogs/perspective_camera.pdf">Perspective Camera and its OpenGL gotchas</a></h3>
-        <p>This post explains and derives perspective projection transform for implementing cameras and its implementation specific gotchas in OpenGL</p>
-      </li>
-  </ul>
+<hr />
 
-  
+<h2 id="source-code">Source code</h2>
+<p><a href="https://github.com/karanjoisher/GpsMiniProject" target="\_blank">Github</a></p>
 
+<hr />
+
+<h2 id="features">Features</h2>
+
+<ul>
+  <li>Install the app using the apk</li>
+  <li>Enter your 10 digit number in the “Enter your identifier” field.</li>
+  <li>Enter the 10 digit number of person you want to track in “Enter the tracking identifier” field.</li>
+  <li>Click on “Track” button.</li>
+  <li>The next screen will show
+    <ul>
+      <li>The number you are tracking.</li>
+      <li>Human readable address of the location.</li>
+      <li>GPS coordinates of the location.</li>
+      <li>Time when the corresponding GPS coordinates were recorded.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="technologies-used">Technologies used</h2>
+
+<ul>
+  <li><strong>Languages</strong>: Java</li>
+  <li><strong>Libraries</strong>: Android SDK, Firebase, Google Maps</li>
+  <li><strong>Tools</strong>: Android Developer Studio</li>
+</ul>
+
+  </article>
 
 </div>
 

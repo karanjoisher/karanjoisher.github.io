@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>Karan Joisher</title>
+<title>Karan Joisher | Stock Data Scraper</title>
 <meta name="description" content="This is my personal website.
 ">
 
@@ -31,7 +31,7 @@
 
 <link rel="stylesheet" href="/assets/css/main.css">
 
-<link rel="canonical" href="/blog/">
+<link rel="canonical" href="/projects/stock_data_scraper/">
 
 <!-- JQuery -->
 <!-- jQuery -->
@@ -96,7 +96,7 @@
           </li>
           
           <!-- Blog -->
-          <li class="nav-item active">
+          <li class="nav-item ">
             <a class="nav-link" href="/blog/">
               blog
               
@@ -158,28 +158,45 @@
     <div class="container mt-5">
       <div class="post">
 
-  <div class="header-bar">
-    <h1>Blogs</h1>
-    <h2>Some of my blogs and posts</h2>
-  </div>
+  <header class="post-header">
+    <h1 class="post-title">Stock Data Scraper</h1>
+    <p class="post-description">Developed a script that can scrape important metrics for various stocks based on their market capitalization.</p>
+  </header>
 
+  <article>
+    <h2 id="demo-video">Demo video</h2>
+<div class="aspect-ratio">
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/QPE_oP6f6AU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
 
-  <ul class="post-list">
-      <li>
-        <h3><a class="post-title" href="../assets/blogs/coordinate_systems_and_transformations.md.html">Coordinate Systems And Transformations</a></h3>
-        <p>This blog explains coordinate systems and various transformations like scaling, translation, rotation and their derivation using matricies</p>
-      </li>
-  </ul>
-  
-  <ul class="post-list">
-      <li>
-        <h3><a class="post-title" href="../assets/blogs/perspective_camera.pdf">Perspective Camera and its OpenGL gotchas</a></h3>
-        <p>This post explains and derives perspective projection transform for implementing cameras and its implementation specific gotchas in OpenGL</p>
-      </li>
-  </ul>
+<hr />
 
-  
+<h2 id="source-code">Source code</h2>
+<ul>
+  <li><a href="https://github.com/karanjoisher/stock_data_crawler" target="\_blank">Github</a></li>
+</ul>
 
+<hr />
+
+<h2 id="features">Features</h2>
+
+<ul>
+  <li>Developed a utility that gets information about various stocks like their past 3 days’ price, sector, valuation ratios, profit ratios, and debt ratios, and saves them into a csv.</li>
+  <li>It can also gather the top 500 stocks based on their market capitalization</li>
+  <li>Made the data crawler multi-threaded which improved the performance by 100%</li>
+</ul>
+
+<hr />
+
+<h2 id="technologies-used">Technologies used</h2>
+
+<ul>
+  <li><strong>Languages</strong>: Python</li>
+  <li><strong>Libraries</strong>: BeautifulSoup, Selenium, Requests</li>
+  <li><strong>Tools</strong>: Insomnia, Google Web Developer Tools</li>
+</ul>
+
+  </article>
 
 </div>
 
