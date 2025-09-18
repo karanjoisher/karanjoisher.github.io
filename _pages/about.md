@@ -12,19 +12,19 @@ news: false  # includes a list of news items
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: false  # includes social icons at the bottom of the page
 ---
-
-I am currently pursuing Master of Science in Computer Science degree at [Northeastern University, Khoury College of Computer Sciences](https://www.khoury.northeastern.edu){:target="\_blank"}, Boston MA.
-
-I received my Bachelors in Technology (B.Tech) in Computer Engineering from [K.J. Somaiya College Of Engineering](https://kjsce.somaiya.edu){:target="\_blank"} and worked as a Software Developer at [Barclays](https://home.barclays){:target="\_blank"} for three years. 
+I am currently a Senior Software Engineer at Hewlett Packard Enterprise, developing high-performance RDMA library for distributed object storage systems.
 
 My main interests include:
-- Software development (Backend APIs, applications, microservices, etc.)
-- Systems programming (Operating systems, kernels, etc.)
-- Tools development (Compilers, debuggers, etc.)
+- Software development (Backend systems, microservices, distributed systems, etc.)
+- Systems programming (Operating systems, networks, etc.)
+- Tools development (Debuggers, graphics, etc.)
 
 My goal is to develop performant, easy-to-use tools that leverage the immense potential offered by modern hardware, making overall computing experience much smoother and bloat free for users and developers.
 
-Other than programming, I also like drawing art and playing video games.
+Other than programming, my hobbies include:
+- Sim Racing (mainly on iRacing)
+- Go-karting
+- Skiing
 
 <br>
 
@@ -35,11 +35,11 @@ Other than programming, I also like drawing art and playing video games.
 <img align="left" width="100" src="../assets/img/neu.png" style="padding-right:15px">
 #### **Northeastern University**
 <strong>M.S. in Computer Science</strong><br>
-<i>Boston, MA</i>&nbsp;&nbsp;|&nbsp;&nbsp;<i>Sept 2022 - May 2024 (Expected)</i> 
+<i>Boston, MA</i>&nbsp;&nbsp;|&nbsp;&nbsp;<i>Sep 2022 - Apr 2024 </i> 
 
 -----
 <strong>GPA:</strong> 4/4 <br> 
-<strong>Coursework:</strong> Operating Systems <b><i>(Received Rockstar Programmer Award)</i></b>, Program Design Paradigms, Database Management Systems<br>
+<strong>Coursework:</strong> Operating Systems <b><i>([Received Rockstar Programmer Award](https://karanjoisher.github.io/assets/pdf/Rockstar_Programmer_Award.pdf){:target="\_blank"})</i></b>, Program Design Paradigms, Database Management Systems<br>
 
 -----
 
@@ -58,12 +58,28 @@ Other than programming, I also like drawing art and playing video games.
 <img align="left" width="100" src="../assets/img/hpe.png" style="padding-right:15px">
 
 #### **Hewlett Packard Enterprise**
-<strong>Systems Software Engineer Intern</strong><br>
+<strong>Software Engineer 2</strong><br>
+<i>Andover, Massachusetts</i>&nbsp;&nbsp;|&nbsp;&nbsp;<i>Jun 2024 - Present</i>
+
+----- 
+- Built NVGrid, a high-performance C++ RDMA library powering distributed object storage clusters, enabling east-west data transfer rates up to 400 Gb/s.
+- Developed observability tooling to capture FlameGraphs, switch packet drops, and network statistics; to help diagnose performance bottlenecks.
+- Tuned switch QoS policies, reduced lock contention and thread starvation, and balanced internode vs. disk I/O bandwidth, increasing cluster throughput from 128 Gb/s to 400 Gb/s.
+- Replaced VMware ESXi with HPE VM Essentials and SR-IOV, enabling deployment of RDMA-capable Kubernetes clusters for development and testing, saving $3,500 per host annually in licensing costs.
+- Developed a Producer–Consumer RDMA protocol to replace a Client–Server model, reducing internode operations per transaction from 4 to 3 and lowering latency by 5%.
+- Developed an error injection API over gRPC that injects faults directly into the RDMA device context (CQ, async event queue), allowing validation of error-handling paths rarely triggered under organic workloads.
+- Developed NAE scripts for Aruba CX 9300 switches to handle interface split and speed requirements, eliminating manual configuration and enabling factory units to support all HPE storage products.
+- Tech used: C/C++, IBVerbs, Boost, gRPC, Redis, Kubernetes, Docker, Grafana, Bazel, GoogleTest, Jenkins
+
+-----
+
+<img align="left" width="100" src="../assets/img/hpe.png" style="padding-right:15px">
+
+#### **Hewlett Packard Enterprise**
+<strong>Software Engineer Intern</strong><br>
 <i>Andover, Massachusetts</i>&nbsp;&nbsp;|&nbsp;&nbsp;<i>May 2023 - Dec 2023</i>
 
 ----- 
-- Built NVGrid, a foundational library suite for developing advanced cloud storage apps leveraging NVMe, RDMA
-- Implemented RDMA channel API using IBVerbs to provide high-speed data transfers with minimum latency
 - Developed TCP channel for non-RDMA NICs, and Shared Memory channel for services on the same node
 - Engineered Connection Manager library for establishing channel connections between nodes; used gRPC service framework and Redis for service look-up; and Boost state machine for connection orchestration
 - Architected Telemetry library to monitor the health and performance metrics of NVGrid components and integrated it with Grafana for visualization
